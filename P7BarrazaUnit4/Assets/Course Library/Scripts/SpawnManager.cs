@@ -7,9 +7,11 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefab;
 
     private float spawnrange = 9f;
+    public float startDelay = 1;
+    public float repeatRate = 3;
     void Start()
     {
-        Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+        InvokeRepeating("SpawnEnemy", startDelay, repeatRate);
     }
 
     private Vector3 GenerateSpawnPosition()
@@ -21,9 +23,8 @@ public class SpawnManager : MonoBehaviour
         return randomPos;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SpawnEnemy()
     {
-        
+        Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
     }
 }
