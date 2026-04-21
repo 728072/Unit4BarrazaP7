@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     public float repeatRate = 3;
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", startDelay, repeatRate);
+        SpawnEnemyWave(3);
     }
 
     private Vector3 GenerateSpawnPosition()
@@ -23,8 +23,11 @@ public class SpawnManager : MonoBehaviour
         return randomPos;
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemyWave(int spawn)
     {
-        Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+        for (int i = 0; i < spawn; i++)
+        {
+            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+        }
     }
 }
