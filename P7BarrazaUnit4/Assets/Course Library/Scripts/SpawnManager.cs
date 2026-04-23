@@ -9,9 +9,22 @@ public class SpawnManager : MonoBehaviour
     private float spawnrange = 9f;
     public float startDelay = 1;
     public float repeatRate = 3;
+
+    public int waveNumber = 1;
+
+    public int enemyCount;
+    public GameObject powerupPrefab;
     void Start()
     {
-        SpawnEnemyWave(3);
+        SpawnEnemyWave(waveNumber);
+        Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+    }
+
+    private void Update()
+    {
+
+        enemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
+        if (enemyCount == 0) { waveNumber++; Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation); SpawnEnemyWave(waveNumber); }
     }
 
     private Vector3 GenerateSpawnPosition()

@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     Rigidbody enemyRb;
     GameObject player;
     public float speed = 0.5f;
+
     void Start()
     {
         enemyRb = GetComponent<Rigidbody>();
